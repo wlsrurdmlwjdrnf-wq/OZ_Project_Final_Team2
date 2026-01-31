@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SQLite4Unity3d;
 
-public class PlayerInitData : MonoBehaviour
+public class PlayerInitData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [PrimaryKey]
+    public int StartGold { get; set; }
+    public int StartLevel { get; set; }
+    public float DefaultGoldPer { get; set; }
+    public bool TutorialClear { get; set; }
+    public DataSOType DataSO { get; set; }
 }

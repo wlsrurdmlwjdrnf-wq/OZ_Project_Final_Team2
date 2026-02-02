@@ -4,11 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemDatabaseSO", menuName = "Database/ItemDatabaseSO")]
 public class ItemDatabaseSO : ScriptableObject
 {
-    public List<ItemDataSO> items;
-}
-
-[CreateAssetMenu(fileName = "SkillDatabaseSO", menuName = "Database/SkillDatabaseSO")]
-public class SkillDatabaseSO : ScriptableObject
-{
-    public List<SkillDataSO> skills;
+    public string version;
+    public List<WeaponData> weapons;
+    public List<AccessoryData> accessories;
+    public List<ArtifactData> artifacts;
+    public List<SkillData> skills;
+    public List<PlayerInitData> playerInits;
+    public List<StageData> stages;
 }

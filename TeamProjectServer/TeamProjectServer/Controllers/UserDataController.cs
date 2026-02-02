@@ -15,10 +15,7 @@ namespace TeamProjectServer.Controllers
     {
         private readonly AppDbContext _context;
 
-        public UserDataController(AppDbContext context)
-        {
-            _context = context;
-        }
+        public UserDataController(AppDbContext context) => _context = context;
 
         // GET: api/UserData
         [HttpGet]

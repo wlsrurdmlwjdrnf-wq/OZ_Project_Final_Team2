@@ -5,7 +5,7 @@ public enum Ex
 }
 public enum DataSOType
 {
-    Resource,
+    Resource = 0,
 }
 public enum ElementType
 {
@@ -14,5 +14,8 @@ public enum ElementType
 public enum GradeType
 {
     Rare,
-
+}
+public enum Tier
+{
+    Bronze = 0,
 }

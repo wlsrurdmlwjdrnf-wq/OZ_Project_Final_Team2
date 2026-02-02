@@ -3,14 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemDataSO", menuName = "GameData/Item/ItemDataSO")]
 public class ItemDataSO : ScriptableObject
 {
-    public string itemName;
-    public Sprite itemIcon;
-    public EDataType dataType;
-    public EItemRarity itemRarity;
-    public int itemLvl;
-
-    public int itemGrade;
-    public float effectValue;
-    public EEffectType activeType;
-    public EEffectType passiveType;
+    public string Name;
+    public EDataType Type;
+    public ElementType Element;
+    public GradeType Grade;
+    public int Level;
+    public float EquipATK;
+    public float PassiveATK;
+    public float CriticalDMG;
+    public float CriticalRate;
+    public float GoldPer;
+    public DataSOType DataSO;
 }

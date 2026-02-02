@@ -9,8 +9,8 @@ public class ItemInstance : IUpgradable
     public ItemInstance(ItemDataSO data)
     {
         baseData = data;
-        currentLevel = data.itemLvl; 
-        currentEffectValue = data.effectValue;
+        currentLevel = data.Level;
+        //currentEffectValue = data.effectValue;
     }
 
     public int Level => currentLevel;
@@ -23,7 +23,8 @@ public class ItemInstance : IUpgradable
 
     private float CalculateEffect(ItemDataSO data, int level)
     {
-        return data.effectValue + level * 10f;
+        //return data.effectValue + level * 10f;
+        return 10.0f;
     }
 
 }

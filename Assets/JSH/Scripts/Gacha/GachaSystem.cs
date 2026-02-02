@@ -1,12 +1,14 @@
+
+/*
+
 using System.Collections.Generic;
 using UnityEngine;
 
-//°¡Ã­°á°ú¹°
 public struct ItemCard 
 {
     public string ID;
     public EDataType type;
-    public EItemRarity rarity;
+    public GradeType rarity;
     public int grade;
 
     public ItemCard(EDataType type, EItemRarity rarity, int grade = 0) 
@@ -157,3 +159,4 @@ public class GachaSystem : MonoBehaviour
         return _ItemGradeChanceTable.Length;
     }
 }
+*/

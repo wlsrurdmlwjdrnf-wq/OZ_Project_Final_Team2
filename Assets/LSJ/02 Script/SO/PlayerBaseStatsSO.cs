@@ -1,6 +1,5 @@
 using UnityEngine;
 
-public enum Tier { Stone, Bronze, Silver, Gold, Platinum, Diamond, Amethyst, Ruby, Brilliance}
 [CreateAssetMenu(menuName = "GameData/Player/BaseStats", fileName = "PlayerBaseStats")]
 public class PlayerBaseStatsSO : ScriptableObject
 {

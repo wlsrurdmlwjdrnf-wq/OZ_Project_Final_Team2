@@ -17,7 +17,7 @@ public static class DatabaseBuilder
             string path = AssetDatabase.GUIDToAssetPath(guid);
             //주소 받아서 실제 데이터 받아옴
             ItemDataSO item = AssetDatabase.LoadAssetAtPath<ItemDataSO>(path);
-            if (item != null && item.dataType == EDataType.Weapon)
+            if (item != null && item.Type == EDataType.Weapon)
                 items.Add(item);
         }
         //이 경로에 데이터베이스가 있으면 가져오고
@@ -47,7 +47,7 @@ public static class DatabaseBuilder
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
             ItemDataSO item = AssetDatabase.LoadAssetAtPath<ItemDataSO>(path);
-            if (item != null && item.dataType == EDataType.Accessories)
+            if (item != null && item.Type == EDataType.Accessories)
                 items.Add(item);
         }
 
@@ -76,7 +76,7 @@ public static class DatabaseBuilder
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
             SkillDataSO skill = AssetDatabase.LoadAssetAtPath<SkillDataSO>(path);
-            if (skill != null && skill.dataType == EDataType.Skill)
+            if (skill != null && skill.Type == EDataType.Skill)
                 skills.Add(skill);
         }
 

@@ -58,22 +58,6 @@ public class SerializableModifier
     }
 }
 
-public enum StatType
-{
-    AttackPower,
-    MaxHP,
-    HPRegenPerSec,
-    CritRate,
-    CritDamage,
-    MaxMana,
-    ManaRegenPerSec,
-    GoldMultiplier,
-    ExpMultiplier,
-    AttackSpeed,
-    MoveSpeed,
-}
-public enum Operation { Add, Multiply }
-
 public class PlayerStatManager : Singleton<PlayerStatManager>
 {
     [Header("기본 데이터")]

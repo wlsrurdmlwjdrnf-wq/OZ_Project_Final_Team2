@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -198,3 +199,4 @@ public class InventorySystem : MonoBehaviour
         return targetInventory;
     }
 }
+*/

@@ -8,7 +8,7 @@ public class SkillInstance : IUpgradable
     public SkillInstance(SkillDataSO data)
     {
         baseData = data;
-        currentLevel = data.skillLvl;
+        currentLevel = data.Level;
     }
 
     public int Level => currentLevel;

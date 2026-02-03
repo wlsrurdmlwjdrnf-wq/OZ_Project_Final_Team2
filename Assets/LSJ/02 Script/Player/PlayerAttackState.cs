@@ -20,7 +20,7 @@ public class PlayerAttackState : IEntityState
             IDamageable target = hits[0].GetComponent<IDamageable>();
             if (target != null)
             {
-                float damage = PlayerStatManager.Instance.AttackPower;
+                BigNumber damage = PlayerStatManager.Instance.AttackPower;
 
                 // 크리티컬
                 if (Random.value < PlayerStatManager.Instance.CritRate)

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TeamProjectServer.Models;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using TeamProjectServer.Data;
+using TeamProjectServer.Services;
 
 
 
@@ -18,7 +19,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -30,7 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+DataManager.Initialize();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

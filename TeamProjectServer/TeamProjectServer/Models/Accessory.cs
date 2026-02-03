@@ -3,15 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TeamProjectServer.Models
 {
-    public class AccessoryData : IData
+    public class Accessory : BaseData
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
         public string Name { get; set; }
-        public int Type { get; set; }
-        public int Element {  get; set; }
-        public int Grade { get; set; }
+        public EDataType Type { get; set; }
+        public ElementType Element {  get; set; }
+        public GradeType Grade { get; set; }
         public int Level { get; set; }
         public float Hp { get; set; }
         public float HPPer {  get; set; }

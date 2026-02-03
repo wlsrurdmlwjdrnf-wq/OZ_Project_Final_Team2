@@ -2,10 +2,9 @@
 
 namespace TeamProjectServer.Models
 {
-    public interface IData
+    public abstract class BaseData
     {
         [Key]
-        int ID { get; set; }
-        string Name { get; set; }
+        public int ID { get; set; }
     }
 }

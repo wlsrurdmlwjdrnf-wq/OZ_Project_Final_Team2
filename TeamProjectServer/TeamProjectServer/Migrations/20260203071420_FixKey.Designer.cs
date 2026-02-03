@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TeamProjectServer.Data;
@@ -11,9 +12,11 @@ using TeamProjectServer.Data;
 namespace TeamProjectServer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260203071420_FixKey")]
+    partial class FixKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,9 +123,6 @@ namespace TeamProjectServer.Migrations
                     b.Property<float>("CriticalRate")
                         .HasColumnType("real");
 
-                    b.Property<float>("CurGold")
-                        .HasColumnType("real");
-
                     b.Property<float>("EXPMultiplier")
                         .HasColumnType("real");
 
@@ -167,9 +167,6 @@ namespace TeamProjectServer.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
                     b.ToTable("playerAccountData");
                 });
 
@@ -191,9 +188,6 @@ namespace TeamProjectServer.Migrations
                         .HasColumnType("real");
 
                     b.Property<float>("CriticalRate")
-                        .HasColumnType("real");
-
-                    b.Property<float>("CurGold")
                         .HasColumnType("real");
 
                     b.Property<float>("EXPMultiplier")

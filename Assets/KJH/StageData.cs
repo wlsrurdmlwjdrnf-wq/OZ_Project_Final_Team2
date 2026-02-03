@@ -12,7 +12,6 @@ public class StageData : IData
     public ElementType element;
     public GradeType grade;
     public int level;
-    public DataSOType dataSO;
 
 
     [PrimaryKey]
@@ -21,6 +20,5 @@ public class StageData : IData
     public ElementType Element { get => element; set => element = value; }
     public GradeType Grade { get => grade; set => grade = value; }
     public int Level { get => level; set => level = value; }
-    public DataSOType DataSO { get => dataSO; set => dataSO = value; }
 }
 

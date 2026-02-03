@@ -16,7 +16,13 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 654b2f53ec90e924d86bc9a9e9d952b1
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 2d60751bf70967541befe08edef3d3fc
+    m_Address: ICON_SWORD_WOOD
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Weapon
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0a53ac3cbffadee45bf38f678cba0aa8, type: 2}
   m_SchemaSet:

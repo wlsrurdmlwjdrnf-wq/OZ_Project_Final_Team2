@@ -26,9 +26,9 @@ public class AccessoryData : IData
     public ElementType Element { get => elemnet; set => elemnet = value; }
     public GradeType Grade { get => grade; set => grade = value; }
     public int Level { get => level; set => level = value; }
-    public float Hp { get => hp; set => hp = value; }
-    public float HpPer { get => hpPer; set => hpPer = value; }
-    public float MpPer { get => mpPer; set => mpPer = value; }
+    public float HP { get => hp; set => hp = value; }
+    public float HPPer { get => hpPer; set => hpPer = value; }
+    public float MPPer { get => mpPer; set => mpPer = value; }
     public float GoldPer { get => goldPer; set => goldPer = value; }
     public string Icon {  get => iconKey; set => iconKey = value; }
 }

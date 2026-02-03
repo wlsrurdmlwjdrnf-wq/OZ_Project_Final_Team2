@@ -78,10 +78,10 @@ MonoBehaviour:
     level: 1
     tier: 1
     atkPower: 4
-    maxHP: 4
-    hpRegenPerSec: 4
-    maxMP: 4
-    criticalRate: 4
+    maxHP: 5
+    hpRegenPerSec: 5
+    maxMP: 5
+    criticalRate: 5
     criticaldamage: 4
     mpRegenPerSec: 1
     goldMultiplier: 1
@@ -94,4 +94,3 @@ MonoBehaviour:
     element: 0
     grade: 1
     level: 1
-    dataSO: 0

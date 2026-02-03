@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace TeamProjectServer.Models
 {
-    public class UserData
+    public class PlayerInitData
     {
         //DB 유저 식별용 고유번호 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         //로그인 이메일
@@ -20,7 +22,7 @@ namespace TeamProjectServer.Models
 
         public string Name { get; set; }
         public int Level { get; set; }
-        public Tier Tier { get; set; }
+        public int Tier { get; set; }
         public float ATKPower { get; set; }
         public float MaxHP { get; set; }
         public float HPRegenPerSec { get; set; }

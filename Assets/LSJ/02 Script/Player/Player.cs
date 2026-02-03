@@ -18,6 +18,7 @@ public class Player : EntityStateMachine
     public PlayerIdleState IdleState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
     public PlayerSkillState SkillState { get; private set; }
+    public PlayerKnockBackState KnockBackState { get; private set; }
     public PlayerDeadState DeadState { get; private set; }
 
     public Animator Animator => _anim;
@@ -33,10 +34,15 @@ public class Player : EntityStateMachine
 
     private void Awake()
     {
+        _anim = GetComponent<Animator>();
+        _sr = GetComponent<SpriteRenderer>();
+        _lastAttackTime = Time.time;
+
         // 상태 초기화
         IdleState = new PlayerIdleState(this);
         AttackState = new PlayerAttackState(this);
         SkillState = new PlayerSkillState(this);
+        KnockBackState = new PlayerKnockBackState(this);
         DeadState = new PlayerDeadState(this);
 
         ChangeState(IdleState);

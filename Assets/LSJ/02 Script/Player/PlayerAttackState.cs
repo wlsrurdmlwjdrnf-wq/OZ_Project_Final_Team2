@@ -3,11 +3,20 @@ using UnityEngine;
 public class PlayerAttackState : IEntityState
 {
     private readonly Player _player;
+    private int _attackIndex = 0;
 
     public PlayerAttackState(Player player) => _player = player;
 
     public void OnEnter()
     {
+        _player.Animator.speed = PlayerStatManager.Instance.AttackSpeed;
+        
+        int rand = Random.Range(1, 4);
+        while (_attackIndex == rand) rand = Random.Range(1, 4);
+        _attackIndex = rand;
+        _player.Animator.SetInteger("AttackIndex", _attackIndex);
+
+        Debug.Log($"{_player.Animator.speed}, {PlayerStatManager.Instance.AttackSpeed}");
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             _player.AttackPoint.position,
@@ -30,6 +39,8 @@ public class PlayerAttackState : IEntityState
 
                 target.TakeDamage(damage);
                 _player.LastAttackTime = Time.time;
+
+                Debug.Log($"{BigNumberFormatter.ToFormatted(damage)}");
             }
         }
     }

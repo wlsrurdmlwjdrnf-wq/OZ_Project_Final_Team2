@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class BigNumber : IComparable<BigNumber>
 {
-    public double mantissa; // 1.0 ~ <10.0 ¹üÀ§·Î Á¤±ÔÈ­
+    public double mantissa;
     public long exponent;
 
     // »ý¼ºÀÚµé
@@ -75,7 +75,7 @@ public class BigNumber : IComparable<BigNumber>
         }
     }
 
-    // »¬¼À
+    // »¬¼À (µ¡¼À È°¿ë)
     public static BigNumber operator -(BigNumber a, BigNumber b)
     {
         return a + Negate(b);

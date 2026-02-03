@@ -14,18 +14,17 @@ public static class BigNumberFormatter
         "bu", "bv", "bw", "bx", "by", "bz"
     };
 
+    // 1000이상 다 과학적 표기
     public static string ToString(BigNumber bn)
     {
         if (bn.mantissa == 0) return "0";
 
-        // exponent 0~3 -> 일반 숫자 표시
         if (bn.exponent >= 0 && bn.exponent <= 3)
         {
             double value = bn.mantissa * Math.Pow(10, bn.exponent);
             return value.ToString("N2");
         }
 
-        // 그 외 -> 과학적 표기
         return $"{bn.mantissa:F2}e{bn.exponent}";
     }
 
@@ -61,6 +60,7 @@ public static class BigNumberFormatter
         return isNegative ? "-" + result : result;
     }
 
+    // 
     public static string ToFormatted(float value)
     {
         if (value == 0) return "0";

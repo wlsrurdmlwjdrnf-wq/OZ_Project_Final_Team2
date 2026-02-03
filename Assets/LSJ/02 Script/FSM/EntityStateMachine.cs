@@ -5,7 +5,6 @@ using UnityEngine;
 public class EntityStateMachine : MonoBehaviour
 {
     protected IEntityState currentState;
-    protected IEntityState previousState;
 
     protected virtual void Update()
     {
@@ -17,11 +16,13 @@ public class EntityStateMachine : MonoBehaviour
     }
     public virtual void ChangeState(IEntityState newState)
     {
-        if (currentState == newState) return;
+        if(currentState == newState)
+        {
+            currentState?.OnEnter();
+            return;
+        }
 
         currentState?.OnExit();
-        previousState = currentState;
-
         currentState = newState;
         currentState?.OnEnter();
     }

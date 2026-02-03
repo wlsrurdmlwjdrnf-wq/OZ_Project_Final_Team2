@@ -46,8 +46,8 @@ public class PlayerHpMp : MonoBehaviour
             {
                 float regenAmount = PlayerStatManager.Instance.ManaRegenPerSec;
                 CurrentMana += regenAmount;
-                
-                if (CurrentMana >   PlayerStatManager.Instance.MaxMana)
+
+                if (CurrentMana > PlayerStatManager.Instance.MaxMana)
                     CurrentMana = PlayerStatManager.Instance.MaxMana;
 
             }
@@ -60,11 +60,11 @@ public class PlayerHpMp : MonoBehaviour
         if (amount <= new BigNumber(0)) return;
 
         CurrentHP -= amount;
-        if (CurrentHP < new BigNumber(0))
-            CurrentHP = new BigNumber(0);
-
         if (CurrentHP <= new BigNumber(0))
+        {
+            CurrentHP = new BigNumber(0);
             Die();
+        }
     }
     private void Die()
     {

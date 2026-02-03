@@ -1,10 +1,13 @@
+using UnityEngine;
+
 public class PlayerSkillState : IEntityState
 {
     private readonly Player _player;
     public PlayerSkillState(Player player) => _player = player;
     public void OnEnter() 
     {
-        // 스킬 시전 애니메이션
+        _player.Animator.speed = 1f;
+        _player.Animator.SetInteger("AttackIndex", Random.Range(1, 4));
     }
     public void OnUpdate() { }
     public void OnFixedUpdate() { }

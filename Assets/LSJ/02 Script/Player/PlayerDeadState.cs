@@ -4,12 +4,13 @@ public class PlayerDeadState : IEntityState
     public PlayerDeadState(Player player) => _player = player;
     public void OnEnter() 
     {
-        // 죽는 애니메이션
+        _player.Animator.speed = 1f;
+        _player.Animator.SetBool("IsDead", true);
     }
     public void OnUpdate() { }
     public void OnFixedUpdate() { }
     public void OnExit() 
     {
-        // 죽은 스테이지에서 리셋
+
     }
 }

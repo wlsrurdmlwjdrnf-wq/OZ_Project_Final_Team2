@@ -14,7 +14,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
     [SerializeField] protected bool isDestroyOnLoad = false;
 
-    protected static T instance;
+    public static T instance;
 
     public static T Instance
     {

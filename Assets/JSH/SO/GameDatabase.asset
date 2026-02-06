@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f116824232ab8d4eafadcf61e1961c6, type: 3}
+  m_Name: GameDatabase
+  m_EditorClassIdentifier: 
+  version: 
+  weapons:
+  - id: 1
+    name: WoodSword
+    type: 0
+    element: 0
+    grade: 2
+    level: 1
+    equipATK: 1
+    passiveATK: 1
+    criticalDMG: 1
+    criticalRate: 1
+    goldPer: 1
+    iconKey: ICON_SWORD_WOOD
+    soundKey: SFX_SWORD
+    effectKey: EFFECT_SWORD
+  - id: 2
+    name: StoneSwoerd
+    type: 0
+    element: 0
+    grade: 2
+    level: 1
+    equipATK: 2
+    passiveATK: 2
+    criticalDMG: 2
+    criticalRate: 2
+    goldPer: 2
+    iconKey: ICON_SWORD_STONE
+    soundKey: SFX_SWORD
+    effectKey: EFFECT_SWORD
+  accessories:
+  - id: 1
+    name: WoodBelt
+    type: 0
+    elemnet: 0
+    grade: 2
+    level: 1
+    hp: 1
+    hpPer: 1
+    mpPer: 1
+    goldPer: 1
+    iconKey: ICON_BELT_WOOD
+  artifacts:
+  - id: 1
+    name: Wood
+    type: 0
+    element: 0
+    grade: 2
+    level: 1
+    iconKey: ICON_ARTIFACT_WOOD
+  skills:
+  - id: 1
+    name: Fireball
+    type: 2
+    element: 0
+    grade: 1
+    level: 1
+    iconKey: ICON_FIREBALL
+    soundKey: SFX_FIREBALL
+    effectKey: EFFECT_FIREBALL
+  playerInits:
+  - id: 1
+    name: Kim
+    level: 1
+    tier: 1
+    atkPower: 1
+    maxHP: 1
+    hpRegenPerSec: 1
+    maxMP: 1
+    criticalRate: 1
+    criticaldamage: 1
+    mpRegenPerSec: 1
+    goldMultiplier: 1
+    curGold: 1000
+    expMultiplier: 1
+    atkSpeed: 1
+    moveSpeed: 1
+  stages:
+  - id: 1
+    name: Forest
+    element: 0
+    grade: 1
+    level: 1

@@ -1,8 +1,10 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SQLite4Unity3d;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -76,7 +78,11 @@ public class ImportJson : EditorWindow
     {
         try
         {
-            var response = JsonConvert.DeserializeObject<SheetData>(json);
+            var root = JObject.Parse(json);
+            var dataNode = root["data"] as JObject;
+            string version = root["version"]?.ToString();
+
+
             string dbPath = Path.Combine(Application.persistentDataPath, "LocalGameData.db");
 
             string directory = Path.GetDirectoryName(dbPath);
@@ -84,20 +90,20 @@ public class ImportJson : EditorWindow
 
             using (var db = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create))
             {
-                // 트랜잭션 시작 (성능 및 데이터 무결성)
                 db.BeginTransaction();
 
-                SaveTable<WeaponData>(db, response.data, "Weapon");
-                SaveTable<AccessoryData>(db, response.data, "Accessory");
-                SaveTable<ArtifactData>(db, response.data, "Artifact");
-                SaveTable<PlayerInitData>(db, response.data, "PlayerInit");
-                SaveTable<SkillData>(db, response.data, "Skill");
-                SaveTable<StageData>(db, response.data, "Stage");
+                SaveTable<WeaponData>(db, dataNode, "Weapon");
+                SaveTable<AccessoryData>(db, dataNode, "Accessory");
+                SaveTable<ArtifactData>(db, dataNode, "Artifact");
+                SaveTable<PlayerInitData>(db, dataNode, "PlayerInit");
+                SaveTable<SkillData>(db, dataNode, "Skill");
+                SaveTable<StageData>(db, dataNode, "Stage");
 
                 db.Commit();
+                DBFromSO();
 
-                PlayerPrefs.SetString("GameDataVersion", response.version);
-                EditorUtility.DisplayDialog("성공", $"버전 {response.version} 저장 완료!", "확인");
+                PlayerPrefs.SetString("GameDataVersion", version);
+                EditorUtility.DisplayDialog("성공", $"버전 {version} 저장 완료!", "확인");
             }
         }
         catch (System.Exception e)
@@ -107,14 +113,13 @@ public class ImportJson : EditorWindow
         }
     }
 
-    private void SaveTable<T>(SQLiteConnection db, Dictionary<string, List<Dictionary<string, object>>> allData, string sheetName) where T : new()
+    private void SaveTable<T>(SQLiteConnection db, JObject allData , string sheetName) where T : new()
     {
         if (allData.ContainsKey(sheetName))
         {
-            Debug.Log($"{sheetName} 데이터 발견! 개수: {allData[sheetName].Count}");
             db.DropTable<T>(); // 기존 데이터 삭제
             db.CreateTable<T>();
-
+            Debug.Log(allData.ToString());
             // 객체 변환
             string tableJson = JsonConvert.SerializeObject(allData[sheetName]);
             var list = JsonConvert.DeserializeObject<List<T>>(tableJson);
@@ -125,6 +130,49 @@ public class ImportJson : EditorWindow
         else
         {
             Debug.LogWarning($"{sheetName} 시트가 JSON 데이터에 존재하지 않습니다.");
+        }
+    }
+
+    private void DBFromSO()
+    {
+        string dbPath = Path.Combine(Application.persistentDataPath, "LocalGameData.db");
+        string assetPath = "Assets/JSH/SO/GameDatabase.asset";
+
+        using (var db = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadOnly))
+        {
+            UpdateSO<ItemDatabaseSO, WeaponData>(db, assetPath, "weapons");
+            UpdateSO<ItemDatabaseSO, AccessoryData>(db, assetPath, "accessories");
+            UpdateSO<ItemDatabaseSO, ArtifactData>(db, assetPath, "artifacts");
+            UpdateSO<ItemDatabaseSO, SkillData>(db, assetPath, "skills");
+            UpdateSO<ItemDatabaseSO, PlayerInitData>(db, assetPath, "playerInits");
+            UpdateSO<ItemDatabaseSO, StageData>(db, assetPath, "stages");
+        }
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
+
+    private void UpdateSO<TSO, TData>(SQLiteConnection db, string path, string fieldName) where TSO : ScriptableObject where TData : new()
+    {
+        TSO so = AssetDatabase.LoadAssetAtPath<TSO>(path);
+        if (so == null)
+        {
+            so = ScriptableObject.CreateInstance<TSO>();
+            AssetDatabase.CreateAsset(so, path);
+        }
+
+        // DB 테이블을 리스트로 로드
+        var list = db.Table<TData>().ToList();
+        Debug.Log($"[DB Check] {fieldName} 테이블에서 {list.Count}개 읽어옴");
+        // SO 내부의 해당 리스트 필드(FieldName)를 찾아 데이터 주입
+        var field = typeof(TSO).GetField(fieldName);
+        if (field != null)
+        {
+            field.SetValue(so, list);
+            EditorUtility.SetDirty(so);
+        }
+        else
+        {
+            Debug.LogError($"{typeof(TSO).Name} 클래스에 '{fieldName}' 필드가 없습니다!");
         }
     }
 }

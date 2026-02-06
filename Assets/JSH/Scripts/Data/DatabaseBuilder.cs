@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -96,4 +97,5 @@ public static class DatabaseBuilder
         Debug.Log($"SkillDatabaseSO : {skills.Count}");
     }
 }
+*/
 

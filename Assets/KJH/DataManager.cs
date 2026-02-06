@@ -20,9 +20,9 @@ public class DataManager : Singleton<DataManager>
     protected override void Init()
     {
         base.Init();
-        InitData();
+        //InitData();
     }
-
+    /*
     private void InitData()
     {
         _weaponData = _database.weapons.ToDictionary(x => x.ID);
@@ -30,6 +30,6 @@ public class DataManager : Singleton<DataManager>
         _artifactData = _database.artifacts.ToDictionary(x => x.ID);
         _skillData = _database.skills.ToDictionary(x => x.ID);
     }
-
+    */
 
 }

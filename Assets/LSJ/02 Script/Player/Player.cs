@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,6 @@ public class Player : EntityStateMachine
 
     private float _lastAttackTime;
 
-    // »óÅÂµé
     public PlayerIdleState IdleState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
     public PlayerSkillState SkillState { get; private set; }
@@ -32,8 +32,15 @@ public class Player : EntityStateMachine
         set => _lastAttackTime = value;
     }
 
+    public static event Action OnKnockBack;
+    public static event Action OnAttack;
+    public static event Action OnNoAttack;
+    public static event Action OnDead;
+
     private void Awake()
     {
+        OnKnockBack += ChangeKnockBackState;
+
         _anim = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
         _lastAttackTime = Time.time;
@@ -51,5 +58,29 @@ public class Player : EntityStateMachine
     public bool CanAttack()
     {
         return Time.time >= _lastAttackTime + (1f / PlayerStatManager.Instance.AttackSpeed);
+    }
+    private void ChangeKnockBackState()
+    {
+        ChangeState(KnockBackState);
+    }
+    public static void TriggerKnockBack()
+    {
+        OnKnockBack?.Invoke();
+    }
+    public static void TriggerAttack()
+    {
+        OnAttack?.Invoke();
+    }
+    public static void TriggerNoAttack()
+    {
+        OnNoAttack?.Invoke();
+    }
+    public static void TriggerDead()
+    {
+        OnDead?.Invoke();
+    }
+    private void OnDisable()
+    {
+        OnKnockBack -= ChangeKnockBackState;
     }
 }

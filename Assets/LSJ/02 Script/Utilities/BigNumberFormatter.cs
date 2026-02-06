@@ -33,7 +33,7 @@ public static class BigNumberFormatter
     {
         if (bn.mantissa == 0) return "0";
 
-        bool isNegative = bn.mantissa < 0;
+        bool isNegative = bn.sign < 0;
         double absMantissa = Math.Abs(bn.mantissa);
 
         // exponent 0~3 -> 일반 숫자
@@ -60,7 +60,7 @@ public static class BigNumberFormatter
         return isNegative ? "-" + result : result;
     }
 
-    // 
+    // 오버로딩
     public static string ToFormatted(float value)
     {
         if (value == 0) return "0";

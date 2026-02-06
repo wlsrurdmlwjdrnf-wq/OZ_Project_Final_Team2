@@ -12,4 +12,9 @@ public class StageManager : Singleton<StageManager>
         string curStage = $"{CurrentMainNumber} - {CurrentSubNumber}";
         return curStage;
     }
+    public void SetStage(StageRoot stage)
+    {
+        CurrentMainNumber = stage.MainNumber;
+        CurrentSubNumber = stage.SubNumber;
+    }
 }

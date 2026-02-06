@@ -9,14 +9,13 @@ public class PlayerAttackState : IEntityState
 
     public void OnEnter()
     {
+        Player.TriggerAttack();
         _player.Animator.speed = PlayerStatManager.Instance.AttackSpeed;
         
         int rand = Random.Range(1, 4);
         while (_attackIndex == rand) rand = Random.Range(1, 4);
         _attackIndex = rand;
         _player.Animator.SetInteger("AttackIndex", _attackIndex);
-
-        Debug.Log($"{_player.Animator.speed}, {PlayerStatManager.Instance.AttackSpeed}");
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             _player.AttackPoint.position,
@@ -39,8 +38,6 @@ public class PlayerAttackState : IEntityState
 
                 target.TakeDamage(damage);
                 _player.LastAttackTime = Time.time;
-
-                Debug.Log($"{BigNumberFormatter.ToFormatted(damage)}");
             }
         }
     }
@@ -64,5 +61,9 @@ public class PlayerAttackState : IEntityState
     }
 
     public void OnFixedUpdate() { }
-    public void OnExit() { }
+    public void OnExit() 
+    {
+        Debug.Log("공격상태 exit");
+        Player.TriggerNoAttack();
+    }
 }

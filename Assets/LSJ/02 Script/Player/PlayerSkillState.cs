@@ -7,7 +7,8 @@ public class PlayerSkillState : IEntityState
     public void OnEnter() 
     {
         _player.Animator.speed = 1f;
-        _player.Animator.SetInteger("AttackIndex", Random.Range(1, 4));
+        _player.Animator.SetBool("IsSkilling", true);
+        _player.Animator.SetInteger("AttackIndex", 0);
     }
     public void OnUpdate() { }
     public void OnFixedUpdate() { }

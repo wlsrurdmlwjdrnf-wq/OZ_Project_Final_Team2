@@ -25,7 +25,7 @@ public class TestPresenter : MonoBehaviour
     }
     public void AtkPowerUpButtonClick()
     {
-        StatModifier modifier = new StatModifier(StatType.AttackPower, Operation.Multiply, 2f);
+        StatModifier modifier = new StatModifier(StatType.AttackPower, Operation.Multiply, 2);
         PlayerStatManager.Instance.AddModifier(modifier);
     }
     public void CritRateUpButtonClick()

@@ -10,13 +10,10 @@ public class PlayerHpMp : MonoBehaviour
     private Coroutine _recoveryCo;
     private WaitForSeconds _recoveryInterval = new WaitForSeconds(1f);
 
-    private void Awake()
+    private void OnEnable()
     {
         CurrentHP = PlayerStatManager.Instance.MaxHP;
         CurrentMana = PlayerStatManager.Instance.MaxMana;
-    }
-    private void OnEnable()
-    {
         _recoveryCo = StartCoroutine(RecoveryCo());
     }
     private void OnDisable()
@@ -62,7 +59,6 @@ public class PlayerHpMp : MonoBehaviour
         CurrentHP -= amount;
         if (CurrentHP <= new BigNumber(0))
         {
-            CurrentHP = new BigNumber(0);
             Die();
         }
     }

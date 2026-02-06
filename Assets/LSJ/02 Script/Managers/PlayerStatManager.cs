@@ -105,6 +105,7 @@ public class PlayerStatManager : Singleton<PlayerStatManager>
         _modifiers.Remove(modifier);
         MarkDirty();
     }
+    // 모디파이어 객체 비교 쉽게 하는 거 추가하기
 
     public void ClearModifiers()
     {
@@ -134,7 +135,7 @@ public class PlayerStatManager : Singleton<PlayerStatManager>
         _floatCachedValues[StatType.MaxMana] = CalculateFloatStat(StatType.MaxMana, v => Mathf.Max(1.0f, v));
         _floatCachedValues[StatType.ManaRegenPerSec] = CalculateFloatStat(StatType.ManaRegenPerSec, v => Mathf.Max(0f, v));
         _floatCachedValues[StatType.AttackSpeed] = CalculateFloatStat(StatType.AttackSpeed, v => Mathf.Max(0.1f, v));
-        _floatCachedValues[StatType.MoveSpeed] = CalculateFloatStat(StatType.MoveSpeed, v => Mathf.Max(0.1f, v));
+        _floatCachedValues[StatType.MoveSpeed] = CalculateFloatStat(StatType.MoveSpeed, v => Mathf.Max(-10f, v));
 
         _isDirty = false;
     }
@@ -305,6 +306,7 @@ public class PlayerStatManager : Singleton<PlayerStatManager>
 
         foreach (var mod in _modifiers)
         {
+            if (mod.statType == StatType.MoveSpeed || mod.statType == StatType.AttackSpeed) continue; // 공속과 이속은 저장 x
             saveData.modifiers.Add(new SerializableModifier(mod));
         }
 

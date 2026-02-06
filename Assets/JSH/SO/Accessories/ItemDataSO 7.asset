@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5394c28ef9becab48933f122b8e78a5b, type: 3}
   m_Name: ItemDataSO 7
   m_EditorClassIdentifier: 
-  itemName: a4a
-  itemIcon: {fileID: 0}
-  dataType: 1
-  itemRarity: 1
-  itemLvl: 0
-  itemGrade: 4
-  effectValue: 0
-  activeType: 1
-  passiveType: 1
+  Name: aa4
+  Type: 1
+  Element: 0
+  Grade: 1
+  Tier: 1
+  Level: 1
+  EquipATK: 0
+  PassiveATK: 0
+  CriticalDMG: 0
+  CriticalRate: 0
+  GoldPer: 0
+  DataSO: 0

@@ -9,4 +9,16 @@ public class SkillDataSO : ScriptableObject
     public GradeType Grade;
     public int Level;
     public DataSOType DataSO;
+
+    public ESkillEffectType SkillType;
+    public float CoolTime;
+    public float ManaCost;
+    public int TriggerCount;
+    public float Range;
+    public float Damage;
+    public float CriticalRate;
+    public float CriticalDMG;
+
+    public StatType Stat;
+    public float ModifyAmount;
 }

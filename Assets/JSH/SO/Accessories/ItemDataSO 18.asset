@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5394c28ef9becab48933f122b8e78a5b, type: 3}
   m_Name: ItemDataSO 18
   m_EditorClassIdentifier: 
-  itemName: l3a
-  itemIcon: {fileID: 0}
-  dataType: 1
-  itemRarity: 4
-  itemLvl: 0
-  itemGrade: 3
-  effectValue: 0
-  activeType: 1
-  passiveType: 1
+  Name: al3
+  Type: 1
+  Element: 0
+  Grade: 4
+  Tier: 2
+  Level: 1
+  EquipATK: 0
+  PassiveATK: 0
+  CriticalDMG: 0
+  CriticalRate: 0
+  GoldPer: 0
+  DataSO: 0

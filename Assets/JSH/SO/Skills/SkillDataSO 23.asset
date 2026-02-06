@@ -12,8 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7470147a46402844f997bab36939dfbe, type: 3}
   m_Name: SkillDataSO 23
   m_EditorClassIdentifier: 
-  skillName: m4s
-  skillIcon: {fileID: 0}
-  dataType: 2
-  skillRarity: 5
-  skillLvl: 0
+  Name: m4
+  Type: 2
+  Element: 0
+  Grade: 5
+  Level: 1
+  DataSO: 0
+  SkillType: 3
+  CoolTime: 5
+  ManaCost: 0
+  TriggerCount: 0
+  Range: 0
+  Damage: 0
+  CriticalRate: 0
+  CriticalDMG: 0
+  Stat: 0
+  ModifyAmount: 0

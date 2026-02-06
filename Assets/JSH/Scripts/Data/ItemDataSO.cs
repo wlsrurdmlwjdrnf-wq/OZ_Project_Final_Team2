@@ -7,6 +7,7 @@ public class ItemDataSO : ScriptableObject
     public EDataType Type;
     public ElementType Element;
     public GradeType Grade;
+    public int Tier;
     public int Level;
     public float EquipATK;
     public float PassiveATK;

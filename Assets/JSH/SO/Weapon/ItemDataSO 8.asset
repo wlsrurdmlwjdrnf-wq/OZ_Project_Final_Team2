@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5394c28ef9becab48933f122b8e78a5b, type: 3}
   m_Name: ItemDataSO 8
   m_EditorClassIdentifier: 
-  itemName: r1w
-  itemIcon: {fileID: 0}
-  dataType: 0
-  itemRarity: 2
-  itemLvl: 0
-  itemGrade: 1
-  effectValue: 0
-  activeType: 0
-  passiveType: 0
+  Name: wr1
+  Type: 0
+  Element: 0
+  Grade: 2
+  Tier: 4
+  Level: 1
+  EquipATK: 0
+  PassiveATK: 0
+  CriticalDMG: 0
+  CriticalRate: 0
+  GoldPer: 0
+  DataSO: 0

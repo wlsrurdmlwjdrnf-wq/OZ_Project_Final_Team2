@@ -8,7 +8,13 @@ public class PlayerIdleState : IEntityState
 
     public void OnEnter()
     {
-        // 달리는 애니메이션
+        _player.Animator.speed = 1f;
+        _player.Animator.SetInteger("AttackIndex", 0);
+        _player.Animator.SetBool("IsKnockBack", false);
+        _player.Animator.SetBool("IsDead", false);
+        _player.Animator.SetBool("IsSkilling", false);
+
+        Debug.Log("IDLE");
     }
 
     public void OnUpdate()

@@ -4,35 +4,70 @@ using UnityEngine;
 
 public class PlayerHpMp : MonoBehaviour
 {
-    public float CurrentHP { get; private set; }
+    public BigNumber CurrentHP { get; private set; }
     public float CurrentMana { get; private set; }
 
-    private void Awake()
+    private Coroutine _recoveryCo;
+    private WaitForSeconds _recoveryInterval = new WaitForSeconds(1f);
+
+    private void OnEnable()
     {
         CurrentHP = PlayerStatManager.Instance.MaxHP;
         CurrentMana = PlayerStatManager.Instance.MaxMana;
+        _recoveryCo = StartCoroutine(RecoveryCo());
     }
-
-    private void Update()
+    private void OnDisable()
     {
-        CurrentHP += PlayerStatManager.Instance.HPRegenPerSec * Time.deltaTime;
-        CurrentHP = Mathf.Clamp(CurrentHP, 0f, PlayerStatManager.Instance.MaxHP);
-
-        CurrentMana += PlayerStatManager.Instance.ManaRegenPerSec * Time.deltaTime;
-        CurrentMana = Mathf.Clamp(CurrentMana, 0f, PlayerStatManager.Instance.MaxMana);
-    }
-
-    public void TakeDamage(float amount)
-    {
-        CurrentHP -= amount;
-        CurrentHP = Mathf.Max(0f, CurrentHP);
-
-        if (CurrentHP <= 0)
+        if (_recoveryCo != null)
         {
-            // 사망 처리
-            GetComponent<Player>().ChangeState(GetComponent<Player>().DeadState);
+            StopCoroutine(_recoveryCo);
+            _recoveryCo = null;
         }
+    }
+    private IEnumerator RecoveryCo()
+    {
+        while (true)
+        {
+            // HP 회복
+            if (CurrentHP < PlayerStatManager.Instance.MaxHP)
+            {
+                BigNumber regenAmount = PlayerStatManager.Instance.HPRegenPerSec;
+                CurrentHP += regenAmount;
 
+                if (CurrentHP > PlayerStatManager.Instance.MaxHP)
+                    CurrentHP = PlayerStatManager.Instance.MaxHP;
+            }
+
+            // Mana 회복
+            if (CurrentMana < PlayerStatManager.Instance.MaxMana)
+            {
+                float regenAmount = PlayerStatManager.Instance.ManaRegenPerSec;
+                CurrentMana += regenAmount;
+
+                if (CurrentMana > PlayerStatManager.Instance.MaxMana)
+                    CurrentMana = PlayerStatManager.Instance.MaxMana;
+
+            }
+
+            yield return _recoveryInterval;
+        }
+    }
+    public void TakeDamage(BigNumber amount)
+    {
+        if (amount <= new BigNumber(0)) return;
+
+        CurrentHP -= amount;
+        if (CurrentHP <= new BigNumber(0))
+        {
+            Die();
+        }
+    }
+    private void Die()
+    {
+        if (gameObject.TryGetComponent<Player>(out var player))
+        {
+            player.ChangeState(player.DeadState);
+        }
     }
 
     public bool UseMana(float amount)

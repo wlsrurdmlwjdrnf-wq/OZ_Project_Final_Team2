@@ -77,14 +77,15 @@ MonoBehaviour:
     name: Kim
     level: 1
     tier: 1
-    atkPower: 4
-    maxHP: 5
-    hpRegenPerSec: 5
-    maxMP: 5
-    criticalRate: 5
-    criticaldamage: 4
+    atkPower: 1
+    maxHP: 1
+    hpRegenPerSec: 1
+    maxMP: 1
+    criticalRate: 1
+    criticaldamage: 1
     mpRegenPerSec: 1
     goldMultiplier: 1
+    curGold: 1000
     expMultiplier: 1
     atkSpeed: 1
     moveSpeed: 1

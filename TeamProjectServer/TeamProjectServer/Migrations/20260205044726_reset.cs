@@ -1,24 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using TeamProjectServer.Models;
 
 #nullable disable
 
 namespace TeamProjectServer.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class reset : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Users");
-
             migrationBuilder.CreateTable(
                 name: "accessorys",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false),
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     Element = table.Column<int>(type: "integer", nullable: false),
@@ -39,7 +40,8 @@ namespace TeamProjectServer.Migrations
                 name: "artifacts",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false),
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     Element = table.Column<int>(type: "integer", nullable: false),
@@ -53,11 +55,12 @@ namespace TeamProjectServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "playerInits",
+                name: "playerAccountData",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false),
-                    Email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Email = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Level = table.Column<int>(type: "integer", nullable: false),
@@ -70,6 +73,36 @@ namespace TeamProjectServer.Migrations
                     CriticalDamage = table.Column<float>(type: "real", nullable: false),
                     MPRegenPerSec = table.Column<float>(type: "real", nullable: false),
                     GoldMultiplier = table.Column<float>(type: "real", nullable: false),
+                    CurGold = table.Column<float>(type: "real", nullable: false),
+                    EXPMultiplier = table.Column<float>(type: "real", nullable: false),
+                    ATKSpeed = table.Column<float>(type: "real", nullable: false),
+                    MoveSpeed = table.Column<float>(type: "real", nullable: false),
+                    LastLoginTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Inventory = table.Column<List<InventorySlot>>(type: "jsonb", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_playerAccountData", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "playerInits",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Level = table.Column<int>(type: "integer", nullable: false),
+                    Tier = table.Column<int>(type: "integer", nullable: false),
+                    ATKPower = table.Column<float>(type: "real", nullable: false),
+                    MaxHP = table.Column<float>(type: "real", nullable: false),
+                    HPRegenPerSec = table.Column<float>(type: "real", nullable: false),
+                    MaxMP = table.Column<float>(type: "real", nullable: false),
+                    CriticalRate = table.Column<float>(type: "real", nullable: false),
+                    CriticalDamage = table.Column<float>(type: "real", nullable: false),
+                    MPRegenPerSec = table.Column<float>(type: "real", nullable: false),
+                    GoldMultiplier = table.Column<float>(type: "real", nullable: false),
+                    CurGold = table.Column<float>(type: "real", nullable: false),
                     EXPMultiplier = table.Column<float>(type: "real", nullable: false),
                     ATKSpeed = table.Column<float>(type: "real", nullable: false),
                     MoveSpeed = table.Column<float>(type: "real", nullable: false)
@@ -83,7 +116,8 @@ namespace TeamProjectServer.Migrations
                 name: "skills",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false),
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     Elemnet = table.Column<int>(type: "integer", nullable: false),
@@ -102,7 +136,8 @@ namespace TeamProjectServer.Migrations
                 name: "stages",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false),
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Element = table.Column<int>(type: "integer", nullable: false),
                     Grade = table.Column<int>(type: "integer", nullable: false),
@@ -117,7 +152,8 @@ namespace TeamProjectServer.Migrations
                 name: "Weapon",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false),
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     Element = table.Column<int>(type: "integer", nullable: false),
@@ -136,6 +172,12 @@ namespace TeamProjectServer.Migrations
                 {
                     table.PrimaryKey("PK_Weapon", x => x.ID);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_playerAccountData_Email",
+                table: "playerAccountData",
+                column: "Email",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -148,6 +190,9 @@ namespace TeamProjectServer.Migrations
                 name: "artifacts");
 
             migrationBuilder.DropTable(
+                name: "playerAccountData");
+
+            migrationBuilder.DropTable(
                 name: "playerInits");
 
             migrationBuilder.DropTable(
@@ -158,19 +203,6 @@ namespace TeamProjectServer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Weapon");
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Username = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.ID);
-                });
         }
     }
 }

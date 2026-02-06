@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 
 namespace TeamProjectServer.Models
 {
@@ -28,7 +30,10 @@ namespace TeamProjectServer.Models
         public float EXPMultiplier { get; set; }
         public float ATKSpeed { get; set; }
         public float MoveSpeed { get; set; }
-
         public DateTime LastLoginTime { get; set; }
+
+        [Column(TypeName = "Inven")]
+        public List<InventorySlot> Inventory { get; set; } = new();
+        //[Column(TypeName = "")]
     }
 }

@@ -46,5 +46,4 @@ namespace TeamProjectServer.Controllers
             return Ok(DataManager.Get<Stage>(id));
         }
     }
-
 }

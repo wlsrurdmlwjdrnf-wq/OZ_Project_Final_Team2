@@ -4,9 +4,8 @@ using UnityEngine;
 using SQLite4Unity3d;
 
 [System.Serializable]
-public class WeaponData : IData
-{
-    public int id;
+public class WeaponData : BaseData
+{    
     public string name;
     public EDataType type;
     public ElementType element;

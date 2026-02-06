@@ -14,5 +14,12 @@ namespace TeamProjectServer.Data
         public DbSet<Skill> skills { get; set; }
         public DbSet<Stage> stages { get; set; }
         public DbSet<PlayerAccountData> playerAccountData { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<PlayerAccountData>().Property(p => p.Inventory).HasColumnType("jsonb");                
+        }
     }
 }

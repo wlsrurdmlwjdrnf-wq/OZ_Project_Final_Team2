@@ -5,9 +5,8 @@ using SQLite4Unity3d;
 
 
 [System.Serializable]
-public class PlayerInitData : IData
-{
-    public int id;
+public class PlayerInitData : BaseData
+{    
     public string name;
     public int level;
     public Tier tier;
@@ -19,6 +18,7 @@ public class PlayerInitData : IData
     public float criticaldamage;
     public float mpRegenPerSec;
     public float goldMultiplier;
+    public float curGold;
     public float expMultiplier;
     public float atkSpeed;
     public float moveSpeed;
@@ -33,9 +33,10 @@ public class PlayerInitData : IData
     public float HPRegenPerSec { get => hpRegenPerSec; set => hpRegenPerSec = value; }
     public float MaxMP { get => maxMP; set => maxMP = value; }
     public float CriticalRate { get => criticalRate; set => criticalRate = value; }
-    public float CriticalDamage { get => criticaldamage; set => criticaldamage = value; }
+    public float CriticalDamage { get => criticaldamage; set => criticaldamage = value; }    
     public float MPRegenPerSec { get => mpRegenPerSec; set => mpRegenPerSec = value; }
     public float GoldMultiplier { get => goldMultiplier; set => goldMultiplier = value; }
+    public float CurGold { get => curGold; set => curGold = value; }
     public float EXPMultiplier { get => expMultiplier; set => expMultiplier = value; }
     public float ATKSpeed { get => atkSpeed; set => atkSpeed = value; }
     public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }

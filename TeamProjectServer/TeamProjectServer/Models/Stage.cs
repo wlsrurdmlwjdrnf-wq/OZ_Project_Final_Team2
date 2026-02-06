@@ -9,5 +9,6 @@ namespace TeamProjectServer.Models
         public ElementType Element {  get; set; }
         public GradeType Grade { get; set; }
         public int Level { get; set; }
+        public bool isClear { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class StageClearRequest
     {
-        public string Email { get; set; }
-        public int StageID { get; set; }
+        public string email { get; set; }
+        public int stageID { get; set; }
     }
 }

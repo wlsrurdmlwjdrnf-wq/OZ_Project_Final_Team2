@@ -5,14 +5,12 @@ using SQLite4Unity3d;
 
 // 스테이지 데이터
 [System.Serializable]
-public class StageData : IData
-{
-    public int id;
+public class StageData : BaseData
+{    
     public string name;
     public ElementType element;
     public GradeType grade;
-    public int level;
-
+    public int level;    
 
     [PrimaryKey]
     public int ID { get => id; set => id = value; }
